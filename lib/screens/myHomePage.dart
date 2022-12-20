@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../widgets/custom_listview.dart';
+import '../widgets/progressbar_small_containers.dart';
 import '../widgets/search_notif_widget.dart';
 
 List courses = [
@@ -143,16 +144,63 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    
-                    // progress bar container
                     Spacer(),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: 400,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(30)),
+                    // progress bar wala container
+                    Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Container(
+                        padding: EdgeInsets.all(30),
+                        width: 400,
+                        height: 180,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text("Progress"),
+                                Spacer(),
+                                Text("45%"),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            // progress bar 5 small containers
+                            Row(
+                              children: [
+                                ProgressBar(),
+                                Spacer(),
+                                ProgressBar(),
+                                Spacer(),
+                                ProgressBar(),
+                                Spacer(),
+                                ProgressBar(),
+                                Spacer(),
+                                ProgressBar(),
+                              ],
+                            ),
+                            Spacer(),
+                            // Time and date Row
+                            Row(
+                              children: [
+                                Icon(Icons.access_time),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text("6h 50min"),
+                                Spacer(),
+                                Icon(Icons.calendar_month_outlined),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text("26 Apr")
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
