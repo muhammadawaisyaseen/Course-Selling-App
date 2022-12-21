@@ -40,6 +40,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
 
+  int current_page = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -258,11 +259,32 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         // bottomNavigation Bar
-        bottomNavigationBar: NavigationBar(destinations: [
-          NavigationDestination(icon: Icon(Icons.home_outlined), label: "Home"),
-          NavigationDestination(
-              icon: Icon(Icons.menu_book_rounded), label: "Course")
-        ]),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(12),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(40),
+            child: NavigationBar(
+              destinations: const [
+                NavigationDestination(
+                    icon: Icon(Icons.home_outlined), label: "Home"),
+                NavigationDestination(
+                    icon: Icon(Icons.menu_book_rounded), label: "Course"),
+                NavigationDestination(
+                    icon: Icon(CupertinoIcons.heart), label: "wishlist"),
+                NavigationDestination(
+                    icon: Icon(CupertinoIcons.person), label: "Profile"),
+              ],
+              backgroundColor: Color(0xFFffffff),
+              onDestinationSelected: (indexvalue) {
+                setState(() {
+                  current_page = indexvalue;
+                  // print(current_page);
+                });
+              },
+              selectedIndex: current_page,
+            ),
+          ),
+        ),
       ),
     );
   }
