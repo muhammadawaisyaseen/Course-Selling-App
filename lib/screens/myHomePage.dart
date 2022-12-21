@@ -111,7 +111,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 400,
                         height: 300,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            // color: Colors.white,
+                            gradient: const LinearGradient(
+                              colors: [
+                                Color(0xFFd8ffff),
+                                Color(0xFFfefdd9),
+                                Color(0xFFf9d3fe),
+                                Color(0xFFbafeff),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              stops: [0.05, 0.4, 0.7, 0.95],
+                            ),
                             borderRadius: BorderRadius.circular(30)),
                         child: Column(
                           children: [
@@ -125,20 +136,29 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    'UI/UX design Course',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24,
-                                    ),
+                                  RichText(
+                                    text: const TextSpan(
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 24),
+                                        // DefaultTextStyle.of(context).style,
+                                        children: [
+                                          TextSpan(text: 'UI/UX'),
+                                          TextSpan(text: ' '),
+                                          TextSpan(
+                                              text: 'Design Course',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                              ))
+                                        ]),
                                   ),
                                   const Spacer(),
                                   Container(
                                     width: 35,
                                     height: 35,
                                     decoration: const BoxDecoration(
-                                      color: Colors.blueAccent,
+                                      color: Color(0xFFffffff),
                                       shape: BoxShape.circle,
                                     ),
                                     child: Icon(Icons.more_horiz),
@@ -149,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Spacer(),
                             // progress bar wala container
                             Padding(
-                              padding: const EdgeInsets.all(4),
+                              padding: const EdgeInsets.all(6),
                               child: Container(
                                 padding: EdgeInsets.all(30),
                                 width: 400,
