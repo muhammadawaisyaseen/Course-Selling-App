@@ -8,21 +8,18 @@ import 'package:flutter/src/widgets/framework.dart';
 class HorizontalListview extends StatefulWidget {
   HorizontalListview(
       {required this.courseName,
-      required this.ontap,
       required this.isSelected,
+      required this.onFunction,
       super.key});
-
   final String courseName;
-  final VoidCallback ontap;
   final bool isSelected;
+  final VoidCallback onFunction;
 
   @override
   State<HorizontalListview> createState() => _HorizontalListviewState();
 }
 
 class _HorizontalListviewState extends State<HorizontalListview> {
-
-
   @override
   Widget build(BuildContext context) {
     //print(widget.update);
@@ -30,11 +27,11 @@ class _HorizontalListviewState extends State<HorizontalListview> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: GestureDetector(
-          onTap: widget.ontap,
+          onTap: widget.onFunction,
           child: Container(
             // container size increase or decrease according to content
             decoration: BoxDecoration(
-                color: widget.isSelected
+                color: widget.isSelected == true
                     ? Colors.black
                     : Color(0xFF7fcae5),
                 borderRadius: BorderRadius.circular(30),

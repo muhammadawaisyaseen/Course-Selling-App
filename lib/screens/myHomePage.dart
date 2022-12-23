@@ -40,12 +40,37 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
-
-  int current_page = 0;
+  int currentPage = 0;
+  int progSelectedIndex = 0;
+  int progNumber = 20;
+  double myValue = 0.1;
+  int sliderPerValue = 10;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        // appBar: AppBar(
+        //   // toolbarHeight: 120,
+        //   // flexibleSpace: ,
+        //   elevation: 0,
+        //   backgroundColor: Color(0xFF7fcae5),
+        //   leading: CircleAvatar(
+        //     backgroundColor: Color(0xFFcedfe0),
+        //     radius: 30,
+        //     backgroundImage: AssetImage("assets/images/awais.jpg"),
+        //   ),
+        //   actions: [
+        //     IconButton(
+        //       onPressed: () {},
+        //       icon: CircularButton(icon: Icons.search),
+        //       // iconSize: 50,
+        //     ),
+        //     IconButton(
+        //       onPressed: () {},
+        //       icon: CircularButton(icon: Icons.notifications),
+        //     )
+        //   ],
+        // ),
         backgroundColor: const Color(0xFF7fcae5),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,23 +102,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: courses.length,
                 itemBuilder: (context, index) {
+                  print('index :$index');
                   return HorizontalListview(
                     courseName: courses[index],
-                    ontap: () {
+                    isSelected: selectedIndex == index ? true : false,
+                    onFunction: () {
                       setState(() {
                         selectedIndex = index;
                       });
+                      print('Selected index : $selectedIndex');
                     },
-                    isSelected: selectedIndex == index,
                   );
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
+            const Padding(
+              padding: EdgeInsets.all(20),
               child: Text(
                 "Popular Courses",
                 style: TextStyle(
@@ -134,11 +161,11 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Color(0xFFffffff),
               onDestinationSelected: (indexvalue) {
                 setState(() {
-                  current_page = indexvalue;
+                  currentPage = indexvalue;
                   // print(current_page);
                 });
               },
-              selectedIndex: current_page,
+              selectedIndex: currentPage,
             ),
           ),
         ),
@@ -160,10 +187,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
-                children: const [
+                children: [
                   Text("UI Design"),
                   Spacer(),
-                  Text("56%"),
+                  Text("$myValue %"),
                 ],
               ),
             ),
@@ -175,12 +202,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 data: const SliderThemeData(
                   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
                   trackHeight: 10,
+                  activeTrackColor: Colors.green,
+                  inactiveTickMarkColor: Colors.white,
                 ),
                 child: Slider(
-                  value: 0.5,
-                  onChanged: (value) {},
-                  activeColor: Color(0xFF7fcae5),
-                  inactiveColor: Color(0xFFf8f8f8),
+                  value: myValue,
+                  onChanged: (value) {
+                    setState(() {
+                      myValue = value;
+                      // if (myValue == 0.1) {
+                      //   sliderPerValue = 10;
+                      // } else if (myValue == 0.2) {
+                      //   sliderPerValue = 20;
+                      // } else if (myValue == 0.3) {
+                      //   sliderPerValue = 30;
+                      // } else if (myValue == 0.4) {
+                      //   sliderPerValue = 40;
+                      // } else if (myValue == 0.5) {
+                      //   sliderPerValue = 50;
+                      // } else if (myValue == 0.6) {
+                      //   sliderPerValue = 60;
+                      // } else if (myValue == 0.7) {
+                      //   sliderPerValue = 70;
+                      // } else if (myValue == 0.8) {
+                      //   sliderPerValue = 80;
+                      // } else if (myValue == 0.9) {
+                      //   sliderPerValue = 90;
+                      // } else if (myValue == 1) {
+                      //   sliderPerValue = 100;
+                      // }
+                    });
+                  },
+                  // divisions: 10,
                 ),
               ),
             )
@@ -228,7 +281,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 24),
-                        // DefaultTextStyle.of(context).style,
                         children: [
                           TextSpan(text: 'UI/UX'),
                           TextSpan(text: ' '),
@@ -266,10 +318,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     Row(
-                      children: const [
+                      children: [
                         Text("Progress"),
                         Spacer(),
-                        Text("45%"),
+                        Text("$progNumber %"),
                       ],
                     ),
                     const SizedBox(
@@ -282,7 +334,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: 5,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          return ProgressBarListview();
+                          return ProgressBarListview(
+                            isSelected:
+                                progSelectedIndex >= index ? true : false,
+                            onFunction: () {
+                              setState(() {
+                                progSelectedIndex = index;
+                                if (progSelectedIndex == 0) {
+                                  progNumber = 20;
+                                } else if (progSelectedIndex == 1) {
+                                  progNumber = 40;
+                                } else if (progSelectedIndex == 2) {
+                                  progNumber = 60;
+                                } else if (progSelectedIndex == 3) {
+                                  progNumber = 80;
+                                } else if (progSelectedIndex == 4) {
+                                  progNumber = 100;
+                                }
+                              });
+
+                              print("progress $progSelectedIndex");
+                            },
+                          );
                         },
                       ),
                     ),
