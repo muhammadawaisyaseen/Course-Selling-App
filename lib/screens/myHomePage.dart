@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:course_selling_app/screens/profile_page.dart';
+import 'package:course_selling_app/screens/wishlist_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -9,6 +11,7 @@ import '../widgets/custom_listview.dart';
 import '../widgets/progressbar_small_containers.dart';
 import '../widgets/progressbar_small_containers.dart';
 import '../widgets/search_notif_widget.dart';
+import 'course_page.dart';
 
 List courses = [
   "java Script",
@@ -30,6 +33,14 @@ List courses = [
   "Java Script",
   "Animation",
 ];
+// List pagess;
+
+List pages = [
+  HomeScreen(),
+  CourseScreen(),
+  WishlistScreen(),
+  ProfileScreen(),
+];
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -39,8 +50,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int selectedIndex = 0;
-  int currentPage = 0;
+  int barSelectedIndex = 0;
+  // int currentPage = 0;
   int progSelectedIndex = 0;
   int progNumber = 20;
   double myValue = 0.1;
@@ -102,15 +113,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: courses.length,
                 itemBuilder: (context, index) {
-                  print('index :$index');
                   return HorizontalListview(
                     courseName: courses[index],
-                    isSelected: selectedIndex == index ? true : false,
+                    isSelected: barSelectedIndex == index ? true : false,
                     onFunction: () {
                       setState(() {
-                        selectedIndex = index;
+                        barSelectedIndex = index;
                       });
-                      print('Selected index : $selectedIndex');
                     },
                   );
                 },
@@ -143,32 +152,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(12),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(40),
-            child: NavigationBar(
-              destinations: const [
-                NavigationDestination(
-                    icon: Icon(Icons.home_outlined), label: "Home"),
-                NavigationDestination(
-                    icon: Icon(Icons.menu_book_rounded), label: "Course"),
-                NavigationDestination(
-                    icon: Icon(CupertinoIcons.heart), label: "wishlist"),
-                NavigationDestination(
-                    icon: Icon(CupertinoIcons.person), label: "Profile"),
-              ],
-              backgroundColor: Color(0xFFffffff),
-              onDestinationSelected: (indexvalue) {
-                setState(() {
-                  currentPage = indexvalue;
-                  // print(current_page);
-                });
-              },
-              selectedIndex: currentPage,
-            ),
-          ),
-        ),
+
+        
       ),
     );
   }
@@ -190,7 +175,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text("UI Design"),
                   Spacer(),
-                  Text("$myValue %"),
+
+                  Text("${(myValue * 100).toStringAsFixed(0)} %"),
                 ],
               ),
             ),
@@ -203,37 +189,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
                   trackHeight: 10,
                   activeTrackColor: Colors.green,
-                  inactiveTickMarkColor: Colors.white,
+                  inactiveTickMarkColor: Colors.transparent,
                 ),
                 child: Slider(
                   value: myValue,
                   onChanged: (value) {
                     setState(() {
                       myValue = value;
-                      // if (myValue == 0.1) {
-                      //   sliderPerValue = 10;
-                      // } else if (myValue == 0.2) {
-                      //   sliderPerValue = 20;
-                      // } else if (myValue == 0.3) {
-                      //   sliderPerValue = 30;
-                      // } else if (myValue == 0.4) {
-                      //   sliderPerValue = 40;
-                      // } else if (myValue == 0.5) {
-                      //   sliderPerValue = 50;
-                      // } else if (myValue == 0.6) {
-                      //   sliderPerValue = 60;
-                      // } else if (myValue == 0.7) {
-                      //   sliderPerValue = 70;
-                      // } else if (myValue == 0.8) {
-                      //   sliderPerValue = 80;
-                      // } else if (myValue == 0.9) {
-                      //   sliderPerValue = 90;
-                      // } else if (myValue == 1) {
-                      //   sliderPerValue = 100;
-                      // }
                     });
                   },
-                  // divisions: 10,
                 ),
               ),
             )
@@ -353,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 }
                               });
 
-                              print("progress $progSelectedIndex");
+                              // print("progress $progSelectedIndex");
                             },
                           );
                         },
