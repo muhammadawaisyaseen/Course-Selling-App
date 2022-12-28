@@ -3,8 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class PlayButton extends StatelessWidget {
-  PlayButton(
-      {required this.icon, required this.isSelected});
+  PlayButton({required this.icon, required this.isSelected});
   final IconData icon;
   // final VoidCallback onFunction;
   final bool isSelected;
@@ -19,7 +18,7 @@ class PlayButton extends StatelessWidget {
       ),
       child: Icon(
         icon,
-        color: isSelected == true ? Colors.grey : Colors.black,
+        color: isSelected == true ? Colors.grey[300] : Colors.black,
       ),
     );
   }
