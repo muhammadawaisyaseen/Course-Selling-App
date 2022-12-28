@@ -58,9 +58,6 @@ class UiUxDesignCourseDetails extends StatelessWidget {
             ),
           ],
         ),
-        // appBar: AppBar(
-
-        // ),
       ),
     );
   }
