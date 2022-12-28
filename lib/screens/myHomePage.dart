@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:course_selling_app/screens/profile_page.dart';
+import 'package:course_selling_app/screens/ui/ux_designcourse_details.dart';
 import 'package:course_selling_app/screens/wishlist_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int barSelectedIndex = 0;
-  // int currentPage = 0;
   int progSelectedIndex = 0;
   int progNumber = 20;
   double myValue = 0.1;
@@ -152,8 +152,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-
-        
       ),
     );
   }
@@ -175,7 +173,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text("UI Design"),
                   Spacer(),
-
                   Text("${(myValue * 100).toStringAsFixed(0)} %"),
                 ],
               ),
@@ -214,7 +211,6 @@ class _HomeScreenState extends State<HomeScreen> {
         width: 400,
         height: 300,
         decoration: BoxDecoration(
-            // color: Colors.white,
             gradient: const LinearGradient(
               colors: [
                 Color(0xFFd8ffff),
@@ -239,21 +235,35 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  RichText(
-                    text: const TextSpan(
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24),
-                        children: [
-                          TextSpan(text: 'UI/UX'),
-                          TextSpan(text: ' '),
-                          TextSpan(
-                              text: 'Design Course',
-                              style: TextStyle(
-                                color: Colors.black,
-                              ))
-                        ]),
+                  InkWell(
+                    onTap: () {
+                      print('ho gya click');
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) {
+                      //   UiUxDesignCourseDetails();
+                      // }));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UiUxDesignCourseDetails()),
+                      );
+                    },
+                    child: RichText(
+                      text: const TextSpan(
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24),
+                          children: [
+                            TextSpan(text: 'UI/UX'),
+                            TextSpan(text: ' '),
+                            TextSpan(
+                                text: 'Design Course',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ))
+                          ]),
+                    ),
                   ),
                   const Spacer(),
                   Container(
