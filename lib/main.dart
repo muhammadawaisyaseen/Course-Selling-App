@@ -1,5 +1,6 @@
 import 'package:course_selling_app/screens/main_screen.dart';
 import 'package:course_selling_app/screens/myHomePage.dart';
+import 'package:course_selling_app/screens/ux_designcourse_details.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,11 +17,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-       
         primarySwatch: Colors.blue,
       ),
       home: BottomNavigation(),
     );
   }
 }
-

@@ -1,9 +1,10 @@
 import 'dart:ui';
 
 import 'package:course_selling_app/screens/profile_page.dart';
-import 'package:course_selling_app/screens/ui/ux_designcourse_details.dart';
+import 'package:course_selling_app/screens/ux_designcourse_details.dart';
 import 'package:course_selling_app/screens/wishlist_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -34,7 +35,7 @@ List courses = [
   "Java Script",
   "Animation",
 ];
-// List pagess;
+
 
 List pages = [
   HomeScreen(),
@@ -235,35 +236,34 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      print('ho gya click');
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) {
-                      //   UiUxDesignCourseDetails();
-                      // }));
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UiUxDesignCourseDetails()),
-                      );
-                    },
-                    child: RichText(
-                      text: const TextSpan(
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24),
-                          children: [
-                            TextSpan(text: 'UI/UX'),
-                            TextSpan(text: ' '),
-                            TextSpan(
-                                text: 'Design Course',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ))
-                          ]),
-                    ),
+                  RichText(
+                    text: TextSpan(
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 24),
+                        children: [
+                          const TextSpan(
+                              text: 'UI/UX',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              )),
+                          const TextSpan(text: ' '),
+                          TextSpan(
+                              text: 'Design Course',
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  print('ho gya click');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            UiUxDesignCourseDetails()),
+                                  );
+                                })
+                        ]),
                   ),
                   const Spacer(),
                   Container(
