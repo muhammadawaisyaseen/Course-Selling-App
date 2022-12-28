@@ -5,7 +5,6 @@ import 'package:flutter/src/widgets/framework.dart';
 class PlayButton extends StatelessWidget {
   PlayButton({required this.icon, required this.isSelected});
   final IconData icon;
-  // final VoidCallback onFunction;
   final bool isSelected;
   @override
   Widget build(BuildContext context) {
